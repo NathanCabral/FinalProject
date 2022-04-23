@@ -71,7 +71,7 @@ export async function getCourse(courseID)
 
 export async function getScore(username)
 {
-    var url = 'api/scores/' + username;
+    var url = 'api/score/' + username;
     const response = await axios.get(url);
     return response.data;
 }

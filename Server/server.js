@@ -157,7 +157,7 @@ app.get('/api/player/:username',(req,res) =>
     });
 });
 
-app.get('/api/scores/:username',(req,res) =>
+app.get('/api/score/:username',(req,res) =>
 {
     model.Scores.find().then(function(scoresList)
     {
