@@ -1,18 +1,18 @@
 <template>
-    <form id="login">
+    <form @submit.prevent="login" id ="login">
         <label for="username"> Username: </label>
         <input type="text" v-model="username" name="username" placeholder="Username"/>
 
         <label for="password"> Password: </label>
         <input type="password" v-model="password" name="password" placeholder="Password"/>
-        <!-- <div v-if="errorMessage"> {{errorMessage}} </div> -->
+        <div v-if="errorMessage"> {{errorMessage}} </div>
         <button class="btn"> Login </button>
 
     </form>
 </template>
 
 <script>
-    import auth from '../services/services';
+    import { getPlayer } from '../services/services';
     export default {
         name: "LoginForm",
         data(){
@@ -24,18 +24,25 @@
         },
         methods:{
             login(){
+                let flag = 0;
                 console.log('Call login()');
-                auth.login(this.username, this.password, (res) => {
-                    if (res.auth){
-                        //Login succesful, go to home page.
-                        console.log('Login success');
-                        this.$router.replace('/');
-                    } else{
-                        //Login failed.
-                        console.log('Login failed');
-                        this.errorMessage = "Login failed";
+                getPlayer(this.username).then(response => {
+                    console.log(response)
+                    let user = response
+                    let password = user.password;
+                    if(password == this.password){
+                        flag = 1;
                     }
                 })
+                
+                if(flag == 1){
+                    console.log('Login success');
+                    this.$router.replace('/');
+                }
+                else{
+                    console.log('Login failed');
+                    this.errorMessage = "Login Failed, Username and password combination not found"
+                }
             }
         }
     }
