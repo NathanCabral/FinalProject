@@ -12,33 +12,33 @@
 </template>
 
 <script>
-    // import auth from '../js/auth';
-    // export default {
-    //     name: "LoginForm",
-    //     data(){
-    //         return{
-    //             username: "",
-    //             password: "",
-    //             errorMessage: ""
-    //         }
-    //     },
-    //     methods:{
-    //         login(){
-    //             console.log('Call login()');
-    //             auth.login(this.username, this.password, (res) => {
-    //                 if (res.auth){
-    //                     //Login succesful, go to home page.
-    //                     console.log('Login success');
-    //                     this.$router.replace('/');
-    //                 } else{
-    //                     //Login failed.
-    //                     console.log('Login failed');
-    //                     this.errorMessage = "Login failed";
-    //                 }
-    //             })
-    //         }
-    //     }
-    // }
+    import auth from '../services/services';
+    export default {
+        name: "LoginForm",
+        data(){
+            return{
+                username: "",
+                password: "",
+                errorMessage: ""
+            }
+        },
+        methods:{
+            login(){
+                console.log('Call login()');
+                auth.login(this.username, this.password, (res) => {
+                    if (res.auth){
+                        //Login succesful, go to home page.
+                        console.log('Login success');
+                        this.$router.replace('/');
+                    } else{
+                        //Login failed.
+                        console.log('Login failed');
+                        this.errorMessage = "Login failed";
+                    }
+                })
+            }
+        }
+    }
 </script>
 
 <style scoped>
