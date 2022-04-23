@@ -64,12 +64,12 @@ export async function getGame(gameID)
 
 export async function getCourse(courseID)
 {
-    var url = 'api/course/' + username;
+    var url = 'api/course/' + courseID;
     const response = await axios.get(url);
     return response.data;
 }
 
-export async function getScores(username)
+export async function getScore(username)
 {
     var url = 'api/scores/' + username;
     const response = await axios.get(url);
