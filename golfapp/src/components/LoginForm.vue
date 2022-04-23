@@ -24,25 +24,24 @@
         },
         methods:{
             login(){
-                let flag = 0;
+               
                 console.log('Call login()');
                 getPlayer(this.username).then(response => {
+                    let flag = 0
                     console.log(response)
                     let user = response
                     let password = user.password;
                     if(password == this.password){
+                        console.log('Login success');
+                        this.$router.replace('/');
                         flag = 1;
                     }
-                })
-                
-                if(flag == 1){
-                    console.log('Login success');
-                    this.$router.replace('/');
-                }
-                else{
+                    if(flag == 0){
                     console.log('Login failed');
                     this.errorMessage = "Login Failed, Username and password combination not found"
                 }
+                })
+
             }
         }
     }
