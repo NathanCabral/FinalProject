@@ -24,22 +24,24 @@
         },
         methods:{
             login(){
-               
                 console.log('Call login()');
                 getPlayer(this.username).then(response => {
-                    let flag = 0
                     console.log(response)
                     let user = response
                     let password = user.password;
-                    if(password == this.password){
+                    if(user == 0){
+                        console.log('Login failed');
+                        this.errorMessage = "Login Failed. Account does not exist, Please Register to Log in"
+                    }
+                    else if(password == this.password){
                         console.log('Login success');
                         this.$router.replace('/');
-                        flag = 1;
+                        
                     }
-                    if(flag == 0){
-                    console.log('Login failed');
-                    this.errorMessage = "Login Failed, Username and password combination not found"
-                }
+                    else{
+                        console.log('Login failed');
+                        this.errorMessage = "Login Failed, Username/Password combination not found"
+                    }
                 })
 
             }
