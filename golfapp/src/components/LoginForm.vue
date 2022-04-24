@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import { getPlayer } from '../services/services';
+    import { getPlayer, setToken, getToken} from '../services/services';
     export default {
         name: "LoginForm",
         data(){
@@ -32,18 +32,21 @@
                     if(user == 0){
                         console.log('Login failed');
                         this.errorMessage = "Login Failed. Account does not exist, Please Register to Log in"
+                        setToken(false)
                     }
                     else if(password == this.password){
                         console.log('Login success');
                         this.$router.replace('/');
-                        
+                        setToken(true)    
                     }
                     else{
                         console.log('Login failed');
                         this.errorMessage = "Login Failed, Username/Password combination not found"
+                        setToken(false)
                     }
                 })
-
+                var x = getToken();
+                console.log(x)
             }
         }
     }

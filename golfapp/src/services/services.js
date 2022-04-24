@@ -75,8 +75,7 @@ export async function getScore(username)
     const response = await axios.get(url);
     return response.data;
 }
-var token = false;
-
+let token;
 export function getToken()
 {
     return token;

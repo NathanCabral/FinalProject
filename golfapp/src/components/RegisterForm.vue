@@ -1,24 +1,56 @@
 <template>
-    <form id="login">
+    <form @submit.prevent="register" id="login">
         <label for="username"> Enter Username: </label>
         <input type="text" v-model="username" name="username" placeholder="Username"/>
-        <label for="firstname"> First Name: </label>
+        <label for="firstName"> First Name: </label>
         <input type="text" placeholder="First Name"/>
-        <label for="lastname"> Last Name: </label>
+        <label for="lastName"> Last Name: </label>
         <input type="text" placeholder="Last Name"/>
-        <label type="text"> Date of Birth </label>
+        <label for="dateOfBirth"> Date of Birth </label>
         <input type="date" />
-        <label for="Email"> Email: </label>
+        <label for="email"> Email: </label>
         <input type="text"  placeholder="Email"/>
         <label for="password"> Enter Password: </label>
         <input type="password" v-model="password" name="password" placeholder="Password"/>
-        <!-- <div v-if="errorMessage"> {{errorMessage}} </div> -->
+        <div v-if="errorMessage"> {{errorMessage}} </div>
         <button class="btn"> Sign Up </button>
 
     </form>
 </template>
 
 <script>
+    import { addPlayer } from '../services/services';
+    export default {
+        name: "RegisterForm",
+        data(){
+            return{
+                username: "",
+                firstName: "",
+                lastName: "",
+                dateOfBirth: "",
+                email: "",
+                password: "",
+                errorMessage: ""
+            }
+        },
+        methods:{
+            register(){
+                console.log("Called Register")
+                const payload = {
+                    username: this.username,
+                    firstName: this.firstName,
+                    lastName: this.lastName,
+                    dateOfBirth: this.dateOfBirth,
+                    email: this.email,
+                    password: this.password
+                }
+                addPlayer(payload).then(response => {
+                    console.log(response)
+                    this.errorMessage = "successfully registered"
+                })
+            }
+        }
+    }
 </script>
 
 <style scoped>
