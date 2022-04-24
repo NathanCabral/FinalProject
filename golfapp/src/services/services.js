@@ -1,7 +1,4 @@
-import { get } from 'core-js/core/dict';
-
 const axios = require('axios');
-
 
 export async function addPlayer(data)
 {
