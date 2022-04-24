@@ -154,6 +154,7 @@ app.get('/api/player/:username',(req,res) =>
                res.json(playersList[i]);
            }
        }
+       res.json("No Player Found");
     });
 });
 
@@ -184,6 +185,7 @@ app.get('/api/game/:gameID',(req,res) =>
                res.json(gamesList[i]);
            }
        }
+       res.json("No Game Found");
     });
 });
 
@@ -198,6 +200,7 @@ app.get('/api/course/:courseID',(req,res) =>
                res.json(coursesList[i]);
            }
        }
+       res.json("No Courses Found");
     });
 });
 
