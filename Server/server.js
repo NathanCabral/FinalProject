@@ -2,6 +2,7 @@ const express = require('express');
 const model = require('./model/model.js');
 const bodyParser = require("body-parser");
 const path = require('path');
+
 let app = express();
 
 app.use(bodyParser.json())
@@ -143,18 +144,28 @@ app.get('/api/scores', (req,res) =>
     });
 });
 
+function reload(response,data)
+{
+    response.json(data);
+}
+
 app.get('/api/player/:username',(req,res) =>
 {
+    var out = 0;
     model.Players.find().then(function(playersList)
     {
        for(var i = 0; i < playersList.length; i++)
        {
            if(playersList[i]['username'] == req.params.username)
            {
-               res.json(playersList[i]);
+               out = playersList[i];
            }
        }
-       res.json("No Player Found");
+        if(out == 0)
+        {
+            out == "No Player Found"
+        }
+        reload(res,out);
     });
 });
 
@@ -162,7 +173,7 @@ app.get('/api/score/:username',(req,res) =>
 {
     model.Scores.find().then(function(scoresList)
     {
-        var scores = []
+       var scores = []
        for(var i = 0; i < scoresList.length; i++)
        {
            if(scoresList[i]['username'] == req.params.username)
@@ -170,22 +181,27 @@ app.get('/api/score/:username',(req,res) =>
                scores.push(scoresList[i]);
            }
        }
-       res.json(scores);
+       reload(res,scores);
     });
 });
 
 app.get('/api/game/:gameID',(req,res) =>
 {
+    var out = 0;
     model.Games.find().then(function(gamesList)
     {
        for(var i = 0; i < gamesList.length; i++)
        {
            if(gamesList[i]['gameID'] == req.params.gameID)
            {
-               res.json(gamesList[i]);
+               out = gamesList[i];
            }
        }
-       res.json("No Game Found");
+       if(out == 0)
+       {
+           out == "No Game Found"
+       }
+       reload(res,out);
     });
 });
 
@@ -193,14 +209,19 @@ app.get('/api/course/:courseID',(req,res) =>
 {
     model.Courses.find().then(function(coursesList)
     {
+       var out = 0;
        for(var i = 0; i < coursesList.length; i++)
        {
            if(coursesList[i]['courseID'] == req.params.courseID)
            {
-               res.json(coursesList[i]);
+               out = coursesList[i];
            }
        }
-       res.json("No Courses Found");
+       if(out == 0)
+       {
+           out == "No Course Found"
+       }
+       reload(res,out);
     });
 });
 
