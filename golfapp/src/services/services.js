@@ -1,4 +1,7 @@
+import { get } from 'core-js/core/dict';
+
 const axios = require('axios');
+
 
 export async function addPlayer(data)
 {
@@ -74,4 +77,15 @@ export async function getScore(username)
     var url = 'api/score/' + username;
     const response = await axios.get(url);
     return response.data;
+}
+var token = false;
+
+export function getToken()
+{
+    return token;
+}
+
+export function setToken(value)
+{
+    token = value;
 }
