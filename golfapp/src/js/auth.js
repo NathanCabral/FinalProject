@@ -4,7 +4,6 @@ export default{
     // To login into the page
     login(username, password, callback){
         authRequest(username, password, (res) => {
-            console.log(res);
             if (res.auth){
                 localStorage.token = res.token;
                 callback({

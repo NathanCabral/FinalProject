@@ -26,9 +26,6 @@
         methods:{
             login(){
                 console.log('Call login()');
-                // getPlayer(this.username, this.password).then(response => {
-                //     console.log(response)
-                // })
                 auth.login(this.username, this.password, (res) => {
                     if (res.auth){
                         //Login succesful, go to home page.
@@ -36,7 +33,7 @@
                         this.$router.replace('/');
                     } else{
                         //Login failed.
-                        console.log('Loggin failed');
+                        console.log('Login failed');
                         this.errorMessage = "Login failed";
                     }
                 })

@@ -1,33 +1,35 @@
 <template>
     <nav id="vue">
-        <div class="menu-item"><router-link to="/">Home</router-link></div>
-        <div class="menu-item"><router-link to="/register">Register</router-link></div>
-        <div class="menu-item"><router-link to="/login">Login</router-link></div>
-        <div class="menu-item"><router-link to="/contactus">Contact Us</router-link></div>
+        <div class="nav-button"><router-link to="/">Home</router-link></div>
+        <div class="nav-button" v-if="isLoggedIn"><router-link to="/">Book Tee Times</router-link></div>
+        <div class="nav-button" v-if="!isLoggedIn"><router-link to="/register">Register</router-link></div>
+        <div class="nav-button" v-if="!isLoggedIn"><router-link  to="/login">Login</router-link></div>
+        <div class="nav-button"><router-link to="/contactus">Contact Us</router-link></div>
+        <div class="nav-button" v-if="isLoggedIn"><a v-on:click="logout"> Logout </a></div>
     </nav>
 </template>
 
 <script>
-    // import auth from '../js/auth'
-    // export default{
-    //     name: 'AppNav',
-    //     data() {
-    //         return { isLoggedIn: auth.isLoggedIn()};
-    //     },
-    //     created(){
-    //         auth.onLoginStatus = isLoggedIn =>{
-    //             this.isLoggedIn = isLoggedIn;
-    //         }
-    //     },
-    //     methods:{
-    //         logout: function(){
-    //             auth.logout( (res) =>{
-    //                 console.log(res)
-    //                 this.$router.replace('/login');
-    //             });
-    //         }
-    //     }
-    // }
+    import auth from '../js/auth'
+    export default{
+        name: 'AppNav',
+        data() {
+            return { isLoggedIn: auth.isLoggedIn()};
+        },
+        created(){
+            auth.onLoginStatus = isLoggedIn =>{
+                this.isLoggedIn = isLoggedIn;
+            }
+        },
+        methods:{
+            logout: function(){
+                auth.logout( (res) =>{
+                    console.log(res)
+                    this.$router.replace('/login');
+                });
+            }
+        }
+    }
 </script>
 
 <style>
@@ -36,7 +38,7 @@ nav {
   display: flex;
   justify-content: center;
 }
-nav .menu-item {
+nav .nav-button {
   color: black;
   font-size: 1.5rem;
   padding: 20px 30px;
@@ -44,13 +46,13 @@ nav .menu-item {
   display: flex;
   transition: 0.2s;
 }
-nav .menu-item.router-link-active,
-nav .menu-item:hover {
+
+nav .nav-button:hover {
   background-color: #c7d9be;
   border-bottom-color: black;
   font-weight: bold;
 }
-nav .menu-item a {
+nav .nav-button a {
   color: inherit;
   text-decoration: none;
 }
