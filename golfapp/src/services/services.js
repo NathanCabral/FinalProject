@@ -47,9 +47,9 @@ export async function getScores()
     return response.data;
 }
 
-export async function getPlayer(username)
+export async function getPlayer(username, password)
 {
-    var url = 'api/player/' + username;
+    var url = 'api/player/' + username +'/' + password;
     const response = await axios.get(url);
     return response.data;
     

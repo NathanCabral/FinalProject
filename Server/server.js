@@ -149,14 +149,14 @@ function reload(response,data)
     response.json(data);
 }
 
-app.get('/api/player/:username',(req,res) =>
+app.get('/api/player/:username/:password',(req,res) =>
 {
     var out = 0;
     model.Players.find().then(function(playersList)
     {
        for(var i = 0; i < playersList.length; i++)
        {
-           if(playersList[i]['username'] == req.params.username)
+           if(playersList[i]['username'] == req.params.username && playersList[i]['password'] == req.params.password)
            {
                out = playersList[i];
            }

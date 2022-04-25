@@ -12,7 +12,8 @@
 </template>
 
 <script>
-    import { getPlayer, setToken, getToken} from '../services/services';
+    //import { getPlayer } from '../services/services';
+    import auth from '../js/auth';
     export default {
         name: "LoginForm",
         data(){
@@ -25,30 +26,48 @@
         methods:{
             login(){
                 console.log('Call login()');
-                getPlayer(this.username).then(response => {
-                    console.log(response)
-                    let user = response
-                    let password = user.password;
-                    if(user == 0){
-                        console.log('Login failed');
-                        this.errorMessage = "Login Failed. Account does not exist, Please Register to Log in"
-                        setToken(false)
-                    }
-                    else if(password == this.password){
+                // getPlayer(this.username, this.password).then(response => {
+                //     console.log(response)
+                // })
+                auth.login(this.username, this.password, (res) => {
+                    if (res.auth){
+                        //Login succesful, go to home page.
                         console.log('Login success');
                         this.$router.replace('/');
-                        setToken(true)    
-                    }
-                    else{
-                        console.log('Login failed');
-                        this.errorMessage = "Login Failed, Username/Password combination not found"
-                        setToken(false)
+                    } else{
+                        //Login failed.
+                        console.log('Loggin failed');
+                        this.errorMessage = "Login failed";
                     }
                 })
-                var x = getToken();
-                console.log(x)
             }
         }
+        //     login(){
+        //         console.log('Call login()');
+        //         getPlayer(this.username).then(response => {
+        //             console.log(response)
+        //             let user = response
+        //             let password = user.password;
+        //             if(user == 0){
+        //                 console.log('Login failed');
+        //                 this.errorMessage = "Login Failed. Account does not exist, Please Register to Log in"
+        //                 setToken(false)
+        //             }
+        //             else if(password == this.password){
+        //                 console.log('Login success');
+        //                 this.$router.replace('/');
+        //                 setToken(true)    
+        //             }
+        //             else{
+        //                 console.log('Login failed');
+        //                 this.errorMessage = "Login Failed, Username/Password combination not found"
+        //                 setToken(false)
+        //             }
+        //         })
+        //         var x = getToken();
+        //         console.log(x)
+        //     }
+        // }
     }
 </script>
 
