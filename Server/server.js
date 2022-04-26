@@ -2,12 +2,57 @@ const express = require('express');
 const model = require('./model/model.js');
 const bodyParser = require("body-parser");
 const path = require('path');
+const dot = require('dotenv').config()
+const mail = require('@sendgrid/mail');
+const { json } = require('express');
 
 let app = express();
 
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../golfapp/build')));
 app.use(express.urlencoded({extended:false}));
+
+mail.setApiKey('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')
+
+app.get('/api/mail/reset/:username/:password',(req,res) =>
+{
+    model.Players.find().then(function(resetUser)
+    {
+        for(var i = 0; i < resetUser.length; i++)
+       {
+           if(resetUser[i]['username'] == req.params.username && resetUser[i]['password'] == req.params.password)
+           {
+               const msg = 
+               {
+                   from: "Nathan.Cabral@ontariotechu.net",
+                   template_id: "d-b27346e5c5a94cf392f3600d3465b9ea",
+                   personalizations: [{
+                    to: {email: "Nathan.Cabral@ontariotechu.net"},
+                    dynamic_template_data: {
+                        subject: "Resgistering with Oshawa Links!",
+                        first_name: resetUser[i]['firstName'], 
+                        last_name: resetUser[i]['lastName'],
+                    },
+                }],
+               };
+
+               mail
+                .send(msg)
+                .then(() => 
+                    {
+                        console.log('Email sent')
+                        reload(res,"Email Has Been Sent!")
+                    })
+                .catch((error) => 
+                {
+                    console.error(error)
+                    reload(res,error)
+                })
+           }
+       }
+    })  
+});
+
 
 
 app.post('/api/addPlayer',(req,res) =>

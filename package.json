@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@sendgrid/mail": "^7.6.2",
     "axios": "^0.26.1"
   }
 }
