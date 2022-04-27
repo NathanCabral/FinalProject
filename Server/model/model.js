@@ -16,7 +16,6 @@ mongoose.connect('mongodb://localhost:27017/Golf',
     }
 );
 
-
 let playerSchema = new schema({
     firstName: String,
     lastName: String,
@@ -35,22 +34,25 @@ let playerSchema = new schema({
 });
 
 let gameSchema = new schema({
-    gameID:{
+    title:{
         type: String,
         unique: true,
         index: true
     },
-    gameDate: Date,
-    gameTime: String,
+    start: Date,
+    end: Date,
     courseID: String,
-    player1: String,
-    player2: String,
-    player3: String,
-    player4: String,
-    player5: String
 },
 {
     collection: 'games'
+});
+
+let chosengamesSchema = new schema({
+    gameID: String,
+    username: String,
+},
+{
+    collection: 'chosengames'
 });
 
 let courseSchema = new schema({
@@ -79,3 +81,4 @@ module.exports.Players = mongoose.model('players', playerSchema);
 module.exports.Games = mongoose.model('games', gameSchema);
 module.exports.Courses = mongoose.model('courses', courseSchema);
 module.exports.Scores = mongoose.model('scores', scoreSchema);
+module.exports.Chosengames = mongoose.model('chosengames', chosengamesSchema)

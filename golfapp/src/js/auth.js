@@ -6,7 +6,7 @@ export default{
         authRequest(username, password, (res) => {
             if (res.auth){
                 localStorage.token = res.token;
-        
+                localStorage.username = res.username;
                 callback({
                     auth: true,
                     token: res.token
@@ -30,7 +30,9 @@ export default{
         this.onLoginStatus(false)
     },
     isLoggedIn(){ return !!localStorage.token},
-
+    getUser(){
+        return localStorage.username;
+    },
     onLoginStatus(status){
         console.log(status)
     }
@@ -41,11 +43,13 @@ function authRequest(username, password, callback){
     var url = 'api/player/' + username +'/' + password;
     axios.get(url)
         .then((result) => {
-            console.log(result.data)
+            console.log(result.data.username)
+            
             if(result.data != 0){
                 callback({
                     auth: true,
-                    token: Math.random().toString(36).substring(7) 
+                    token: Math.random().toString(36).substring(7),
+                    username:  result.data.username
                 })
             }else{
                 callback({
