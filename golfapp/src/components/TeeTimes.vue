@@ -8,6 +8,14 @@ import listPlugin from "@fullcalendar/list"
 import auth from '../js/auth'
 import { addChosen } from '../services/services'
 
+!function(d,s,id){
+  var js,fjs=d.getElementsByTagName(s)[0];
+  if(!d.getElementById(id)){
+    js=d.createElement(s);
+    js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';
+    fjs.parentNode.insertBefore(js,fjs);
+  }
+}(document,'script','weatherwidget-io-js');
 export default {
   components: {
     FullCalendar // make the <FullCalendar> tag available
@@ -58,8 +66,13 @@ export default {
       <form @submit.prevent="event" id ="event">
       <label for="title"> Event Name: </label>
       <input type="text" v-model="title" name="title" placeholder="Event Name"/>
+      <div> {{bookingMessage}} </div>
       <button class="btn"> Book </button>
       </form>
+      <a class="weatherwidget-io" href="https://forecast7.com/en/43d90n78d87/oshawa/" 
+      data-label_1="OSHAWA" data-label_2="WEATHER" data-font="Noto Sans" data-icons="Climacons" 
+      data-theme="orange" data-basecolor="#c28530" data-textcolor="#020925" data-highcolor="#fffc41" 
+      data-lowcolor="#6adff5" data-suncolor="#fffc41" data-raincolor="#6adff5" >OSHAWA WEATHER</a>
     </div>
   </div>
 </template>
@@ -69,11 +82,11 @@ export default {
     padding: 10px;
   }
   .left {
-    width: 75%;
+    width: 80%;
   }
 
   .right {
-    width: 25%;
+    width: 20%;
   }
   #calendar{
     margin: 20px;
@@ -81,17 +94,16 @@ export default {
   }
   #event{
     margin-top:50px;
-    margin-right: 30px;
   }
   label{
     display: block;
     font-weight: bold;
     margin-top: 10px;
-
     box-sizing: border-box;
     text-align: left;
-    margin: auto;
-    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 306px;
   }
   input{
     padding: 12px 20px;
@@ -100,7 +112,9 @@ export default {
     display: block;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    width: 100%;
+    width: 306px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .btn {
     font-weight: bold;
@@ -111,6 +125,20 @@ export default {
     border: none;
     cursor: pointer;
     display: block;
-    width: 100%;
+    width: 306px;
+    margin-left: auto;
+    margin-right: auto;
   } 
+
+  .weatherwidget-io{
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 306px;
+  }
 </style>
+
+
+<script>
+
+</script>
