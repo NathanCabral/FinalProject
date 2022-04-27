@@ -42,14 +42,17 @@ let gameSchema = new schema({
     start: Date,
     end: Date,
     courseID: String,
-    player1: String,
-    player2: String,
-    player3: String,
-    player4: String,
-    player5: String
 },
 {
     collection: 'games'
+});
+
+let chosengamesSchema = new schema({
+    gameID: String,
+    username: String,
+},
+{
+    collection: 'chosegames'
 });
 
 let courseSchema = new schema({
@@ -78,3 +81,4 @@ module.exports.Players = mongoose.model('players', playerSchema);
 module.exports.Games = mongoose.model('games', gameSchema);
 module.exports.Courses = mongoose.model('courses', courseSchema);
 module.exports.Scores = mongoose.model('scores', scoreSchema);
+module.exports.Chosengames = mongoose.model('chosegames', chosengamesSchema)
