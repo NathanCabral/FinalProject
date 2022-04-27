@@ -132,6 +132,9 @@
     background-color: #cccccc;
     text-align: center;
 	}
+  img{
+  height: 1008px;
+}
 
 
   
