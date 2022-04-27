@@ -29,7 +29,7 @@
                 console.log('Call login()');
                 if(this.username == "" || this.password == "")
                 {
-                    this.errorMessage = "Please enter username and password to contine";
+                    this.errorMessage = "Please enter username and password to continue";
                 }
                 else
                 {

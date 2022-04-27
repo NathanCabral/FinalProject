@@ -6,6 +6,7 @@ const dot = require('dotenv').config()
 const mail = require('@sendgrid/mail');
 const Pusher = require('pusher')
 const { json } = require('express');
+const { default: mongoose } = require('mongoose');
 
 let app = express();
 
@@ -56,50 +57,49 @@ app.get('/api/mail/welcome/:username/:password',(req,res) =>
 
 app.get('/api/mail/reset/:username',(req,res) =>
 {
-    model.Players.find().then(function(resetPassword)
+    model.Players.find({username: req.params.username}).then(function(resetPassword)
     {
-        for(var i = 0; i < resetPassword.length; i++)
-       {
-           if(resetPassword[i]['username'] == req.params.username)
-           {
-               const msg = 
-               {
-                   from: "Nathan.Cabral@ontariotechu.net",
-                   template_id: "d-2494445a32c448b1a3f503e6f2bfa420",
-                   personalizations: [{
-                    to: {email: resetPassword[i]['email']},
-                    dynamic_template_data: {
-                        subject: "Password Reset Request!",
-                        first_name: resetPassword[i]['firstName'], 
-                        last_name: resetPassword[i]['lastName'],
-                    },
-                }],
-               };
+        const msg = 
+        {
+            from: "Nathan.Cabral@ontariotechu.net",
+            template_id: "d-2494445a32c448b1a3f503e6f2bfa420",
+            personalizations: [{
+            to: {email: resetPassword[0]['email']},
+            dynamic_template_data: {
+                subject: "Password Reset Request!",
+                first_name: resetPassword[0]['firstName'], 
+                last_name: resetPassword[0]['lastName'],
+            },
+        }],
+        };
 
-               mail
-                .send(msg)
-                .then(() => 
-                    {
-                        console.log('Email sent')
-                        reload(res,"Email Has Been Sent!")
-                    })
-                .catch((error) => 
-                {
-                    console.error(error)
-                    reload(res,error)
-                })
-           }
-       }
+        mail
+        .send(msg)
+        .then(() => 
+            {
+                console.log('Email sent')
+                reload(res,"Email Has Been Sent!")
+            })
+        .catch((error) => 
+        {
+            console.error(error)
+            reload(res,error)
+        })
     })  
 });
 
 app.post('/api/updatePassword/:username',(req,res)=>
 {
-    const doc = model.Players.findOne({username: req.params.username});
-    const update = {password: req.body.newPassword};
-    const value = doc.updateOne(update);
-
-    res.json(value);
+    model.Players.updateOne({username: req.params.username}, {password: req.body.player.newPassword}, function (err, result) {
+        if(err)
+        {
+            console.log(err)
+        }
+        else{
+            console.log(result)
+        }
+        
+    })
 })
 
 app.post('/api/addPlayer',(req,res) =>
