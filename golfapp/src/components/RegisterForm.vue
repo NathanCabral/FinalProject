@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="register" id="login">
+    <form @submit.prevent="register" id="register">
         <label for="username"> Enter Username: </label>
         <input type="text" v-model="username" name="username" placeholder="Username"/>
         <label for="firstName"> First Name: </label>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import { addPlayer, welcomeUser} from '../services/services';
+    import { addPlayer, welcomeUser, getPlayer} from '../services/services';
     export default {
         name: "RegisterForm",
         data(){
@@ -36,16 +36,31 @@
         methods:{
             register(){
                 console.log("Called Register")
-                const payload = {
-                    username: this.username,
-                    firstName: this.firstName,
-                    lastName: this.lastName,
-                    dateOfBirth: this.dateOfBirth,
-                    email: this.email,
-                    password: this.password
+                if(this.username == "" || this.firstName == "" || this.lastName == "" || this.dateOfBirth == "" || this.email == "" || this.password == ""){
+                    this.errorMessage = "All fields required to register"
                 }
-                var out = addPlayer(payload)
-                console.log(out)
+                else{
+                    const payload = {
+                        username: this.username,
+                        firstName: this.firstName,
+                        lastName: this.lastName,
+                        dateOfBirth: this.dateOfBirth,
+                        email: this.email,
+                        password: this.password
+                    }
+                    var out = addPlayer(payload)
+                    console.log(out)
+                    getPlayer(this.username, this.password).then(response =>{
+                        console.log(response)
+                        if(response != 0){
+                            this.errorMessage = "Successfully Registered"
+                            
+                        }
+                        else{
+                            this.errorMessage = "Error Registering User, please try again"
+                        }
+                    })
+                }
                 var output = welcomeUser(this.username,this.password)
                 console.log(output);
                 this.$router.replace('/login');
@@ -55,7 +70,7 @@
 </script>
 
 <style scoped>
-    #login{
+    #register{
         margin-top: 50px;
     }
     label{
