@@ -5,6 +5,7 @@ import RegisterView from '../views/RegisterView.vue'
 import ContactView from '../views/ContactView.vue'
 import ForgotView from '../views/ForgotView.vue'
 import TeeTimes from '../views/TeeTimeView.vue'
+import EnterForgotView from '../views/EnterForgotView.vue'
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: '/teetime',
     name: 'bookteetime',
     component: TeeTimes
+  },
+  {
+    path: '/enterForgot',
+    name: 'EnterForgot',
+    component: EnterForgotView
   },
 
 ]

@@ -9,14 +9,14 @@ export async function welcomeUser(username,password)
 
 export async function updatePassword(data)
 {
-    var url = '/api/updatePassword/' + data['username'] +'/' + data['password'];
+    var url = '/api/updatePassword/' + data['username'];
     const response = await axios.post(url,{player: data});
     return response.data;
 }
 
-export async function resetPassword(username,password)
+export async function resetPassword(username)
 {
-    var url = 'api/mail/reset/' + username +'/' + password;
+    var url = 'api/mail/reset/' + username;
     const response = await axios.get(url);
     return response.data;
 }

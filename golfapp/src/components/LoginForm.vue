@@ -7,7 +7,7 @@
         <input type="password" v-model="password" name="password" placeholder="Password"/>
         <div v-if="errorMessage"> {{errorMessage}} </div>
         <button class="btn"> Login </button>
-        <button class="forgot"> <router-link to="/forgot">Forgot My Password</router-link> </button>
+        <button class="forgot"> <router-link to="/enterForgot">Forgot My Password</router-link> </button>
 
     </form>
 </template>
@@ -27,7 +27,13 @@
         methods:{
             login(){
                 console.log('Call login()');
-                auth.login(this.username, this.password, (res) => {
+                if(this.username == "" || this.password == "")
+                {
+                    this.errorMessage = "Please enter username and password to contine";
+                }
+                else
+                {
+                    auth.login(this.username, this.password, (res) => {
                     if (res.auth){
                         //Login succesful, go to home page.
                         console.log('Login success');
@@ -37,7 +43,8 @@
                         console.log('Login failed');
                         this.errorMessage = "Login failed";
                     }
-                })
+                    })
+                }
             }
         }
     }

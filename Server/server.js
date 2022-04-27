@@ -54,13 +54,13 @@ app.get('/api/mail/welcome/:username/:password',(req,res) =>
     })  
 });
 
-app.get('/api/mail/reset/:username/:password',(req,res) =>
+app.get('/api/mail/reset/:username',(req,res) =>
 {
     model.Players.find().then(function(resetPassword)
     {
         for(var i = 0; i < resetPassword.length; i++)
        {
-           if(resetPassword[i]['username'] == req.params.username && resetPassword[i]['password'] == req.params.password)
+           if(resetPassword[i]['username'] == req.params.username)
            {
                const msg = 
                {
@@ -93,9 +93,9 @@ app.get('/api/mail/reset/:username/:password',(req,res) =>
     })  
 });
 
-app.post('/api/updatePassword/:username/:password',(req,res)=>
+app.post('/api/updatePassword/:username',(req,res)=>
 {
-    const doc = model.Players.findOne({username: req.params.username, password:req.params.password});
+    const doc = model.Players.findOne({username: req.params.username});
     const update = {password: req.body.newPassword};
     const value = doc.updateOne(update);
 

@@ -1,5 +1,8 @@
 <template>
     <form @submit.prevent="forgot" id ="ForgotPass">
+        <label for="password"> Enter Username: </label>
+        <input type="text" v-model="userName" name="userName" placeholder="Enter Username"/>
+
         <label for="password"> Enter New Password: </label>
         <input type="password" v-model="newPass" name="newPass" placeholder="New Password"/>
 
@@ -14,10 +17,13 @@
 </template>
 
 <script>
+    import {updatePassword} from '../services/services';
+
     export default {
         name: "ForgotPassword",
         data(){
             return{
+                userName: "",
                 newPass: "",
                 newPassCon: "",
                 errorMessage: ""
@@ -28,11 +34,18 @@
                 console.log('Call Forgot()')
                 let p1 = this.newPass;
                 let p2 = this.newPassCon;
+                let username = this.userName;
 
-                if(p1 != p2){
-                    this.errorMessage = "Passwords Do not Match"
+                if(p1 != p2 || p1 == '' || p2 == ''){
+                    this.errorMessage = "Please Ensure the Passwords are Correct"
                 }
                 else{
+                    var data = {
+                        username: username,
+                        newPassword: p1 
+                    };
+                    var output = updatePassword(data);
+                    console.log(output);
                     this.$router.replace('/login');
                 }
             }
