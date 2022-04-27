@@ -6,8 +6,9 @@
 <script>
 import ContactUs from '../components/ContactUs.vue'
 
+
 export default {
-  name: 'ContactView',
+  name: 'ContactView', 
   components:{
     ContactUs,
   },
