@@ -156,6 +156,14 @@ app.post('/api/addGame',(req,res) =>
 
 });
 
+app.get('/api/chosenGames',(req,res) =>
+{
+    model.Chosengames.find().then(function(games)
+    {
+       res.json(games);
+    });
+})
+
 app.post('/api/addScore',(req,res) =>
 {
     let scoreData = 
