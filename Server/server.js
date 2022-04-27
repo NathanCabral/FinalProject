@@ -15,35 +15,6 @@ app.use(express.urlencoded({extended:false}));
 
 mail.setApiKey('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')
 
-const pusher = new Pusher({
-    appId: "1401869",
-    key: "98b3212fd80ed7aae0b1",
-    secret: "b2b9ef5426ee7a0f9839",
-    cluster: "mt1",
-    useTLS: true
-});
-
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept'
-    );
-    next();
-  });
-
-app.post('/api/schedule', (req,res) => 
-{
-    const {body} = req;
-    const data = 
-    {
-        ...body,
-    };
-
-    pusher.trigger('schedule', 'new-event', data);
-    res.json(data);
-});
-
 app.get('/api/mail/welcome/:username/:password',(req,res) =>
 {
     model.Players.find().then(function(welcomeUser)
