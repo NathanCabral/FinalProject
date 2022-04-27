@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const path = require('path');
 const dot = require('dotenv').config()
 const mail = require('@sendgrid/mail');
+const Pusher = require('pusher')
 const { json } = require('express');
 
 let app = express();
@@ -13,6 +14,27 @@ app.use(express.static(path.join(__dirname, '../golfapp/build')));
 app.use(express.urlencoded({extended:false}));
 
 mail.setApiKey('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')
+
+const pusher = new Pusher({
+    appId: "1401869",
+    key: "98b3212fd80ed7aae0b1",
+    secret: "b2b9ef5426ee7a0f9839",
+    cluster: "mt1",
+    useTLS: true
+});
+
+app.post('/api/schedule', (req,res) => 
+{
+    const {body} = req;
+    const data = 
+    {
+        ...body,
+    };
+
+    pusher.trigger('schedule', 'new-event', data);
+    res.json(data);
+
+});
 
 app.get('/api/mail/welcome/:username/:password',(req,res) =>
 {
