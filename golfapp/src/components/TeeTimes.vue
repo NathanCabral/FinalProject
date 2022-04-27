@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <script>
 import '@fullcalendar/core/vdom' // solves problem with Vite
 import FullCalendar from '@fullcalendar/vue3'
@@ -144,4 +142,3 @@ export default {
 <script>
 
 </script>
->>>>>>> 43abfd44c88413c37dc88bd952112c3219ef11ef
