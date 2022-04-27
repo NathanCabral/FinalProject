@@ -25,7 +25,7 @@
             logout: function(){
                 auth.logout( (res) =>{
                     console.log(res)
-                    this.$router.replace('/login');
+                    this.$router.go(this.$router.replace('/login'));
                 });
             }
         }
