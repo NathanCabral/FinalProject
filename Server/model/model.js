@@ -52,7 +52,7 @@ let chosengamesSchema = new schema({
     username: String,
 },
 {
-    collection: 'chosegames'
+    collection: 'chosengames'
 });
 
 let courseSchema = new schema({
@@ -81,4 +81,4 @@ module.exports.Players = mongoose.model('players', playerSchema);
 module.exports.Games = mongoose.model('games', gameSchema);
 module.exports.Courses = mongoose.model('courses', courseSchema);
 module.exports.Scores = mongoose.model('scores', scoreSchema);
-module.exports.Chosengames = mongoose.model('chosegames', chosengamesSchema)
+module.exports.Chosengames = mongoose.model('chosengames', chosengamesSchema)
