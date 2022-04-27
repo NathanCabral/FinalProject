@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import { addPlayer } from '../services/services';
+    import { addPlayer, welcomeUser} from '../services/services';
     export default {
         name: "RegisterForm",
         data(){
@@ -44,10 +44,11 @@
                     email: this.email,
                     password: this.password
                 }
-                addPlayer(payload).then(response => {
-                    console.log(response)
-                    this.errorMessage = "successfully registered"
-                })
+                var out = addPlayer(payload)
+                console.log(out)
+                var output = welcomeUser(this.username,this.password)
+                console.log(output);
+                this.$router.replace('/login');
             }
         }
     }
