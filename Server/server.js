@@ -164,7 +164,7 @@ app.get('/api/chosenGames/:username',(req,res) =>
     });
 })
 
-app.get('/api/add/choseGames')
+app.get('/api/add/choseGames', (req, res) =>
 {
     let chosenGames = 
     {
@@ -185,7 +185,7 @@ app.get('/api/add/choseGames')
             console.log('Game has been added successfully!');
         }
     });
-}
+})
 
 app.post('/api/addScore',(req,res) =>
 {

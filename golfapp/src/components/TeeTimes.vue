@@ -6,6 +6,7 @@ import interactionPlugin from '@fullcalendar/interaction'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from "@fullcalendar/list"
 import auth from '../js/auth'
+import { addChosen } from '../services/services'
 
 export default {
   components: {
@@ -36,6 +37,12 @@ export default {
     event(){
       let game = this.title;
       console.log(this.currentUser, game)
+      const payload = {
+        gameID: game,
+        username: this.currentUser
+      }
+      var out = addChosen(payload)
+      console.log(out)
       this.bookingMessage = "Game Booked, Please refer to 'My Bookings'"
     }
     
