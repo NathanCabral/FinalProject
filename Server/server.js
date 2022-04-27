@@ -106,13 +106,13 @@ app.post('/api/addPlayer',(req,res) =>
 {
     let playerData = 
     {
-        id: req.body.id,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        dateOfBirth: req.body.dateOfBirth,
-        email: req.body.email,
-        username: req.body.username,
-        password: req.body.password
+        id: req.body.player.username,
+        firstName: req.body.player.firstName,
+        lastName: req.body.player.lastName,
+        dateOfBirth: req.body.player.dateOfBirth,
+        email: req.body.player.email,
+        username: req.body.player.username,
+        password: req.body.player.password
     };
 
     let newPlayer = new model.Players(playerData);
@@ -134,10 +134,10 @@ app.post('/api/addGame',(req,res) =>
 {
     let gameData = 
     {
-        gameID: req.body.gameID,
-        gameDate: req.body.gameDate,
-        gameTime: req.body.gameTime,
-        courseID: req.body.courseID,
+        gameID: req.body.game.gameID,
+        gameDate: req.body.game.gameDate,
+        gameTime: req.body.game.gameTime,
+        courseID: req.body.game.courseID,
     };
 
     let newGame = new model.Games(gameData);
@@ -160,9 +160,9 @@ app.post('/api/addScore',(req,res) =>
 {
     let scoreData = 
     {
-        playerID: req.body.playerID,
-        courseID: req.body.courseID,
-        score: req.body.score
+        playerID: req.body.score.playerID,
+        courseID: req.body.score.courseID,
+        score: req.body.score.score
     };
 
     let newScore  = new model.Scores(scoreData);
@@ -184,9 +184,9 @@ app.post('/api/addCourse',(req,res) =>
 {
     let courseData = 
     {
-        courseID: req.body.courseID,
-        name: req.body.name,
-        address: req.body.address
+        courseID: req.body.course.courseID,
+        name: req.body.course.name,
+        address: req.body.course.address
     };
 
     let newCourse = new model.Courses(courseData);

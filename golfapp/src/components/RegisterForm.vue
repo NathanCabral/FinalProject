@@ -3,13 +3,13 @@
         <label for="username"> Enter Username: </label>
         <input type="text" v-model="username" name="username" placeholder="Username"/>
         <label for="firstName"> First Name: </label>
-        <input type="text" placeholder="First Name"/>
+        <input type="text" v-model="firstName" name="firstName" placeholder="First Name"/>
         <label for="lastName"> Last Name: </label>
-        <input type="text" placeholder="Last Name"/>
+        <input type="text" v-model="lastName" name="lastName" placeholder="Last Name"/>
         <label for="dateOfBirth"> Date of Birth </label>
-        <input type="date" />
+        <input type="date" v-model="dateOfBirth" name="dateOfBirth"/>
         <label for="email"> Email: </label>
-        <input type="text"  placeholder="Email"/>
+        <input type="text"  v-model="email" name="email" placeholder="Email"/>
         <label for="password"> Enter Password: </label>
         <input type="password" v-model="password" name="password" placeholder="Password"/>
         <div v-if="errorMessage"> {{errorMessage}} </div>
