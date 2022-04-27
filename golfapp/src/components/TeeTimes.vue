@@ -15,6 +15,7 @@ export default {
     return {
       currentUser: auth.getUser(),
       title: "",
+      bookingMessage: "",
       calendarOptions: {
         plugins: [ dayGridPlugin, interactionPlugin, timeGridPlugin, listPlugin ],
         initialView: 'listWeek',
@@ -35,7 +36,7 @@ export default {
     event(){
       let game = this.title;
       console.log(this.currentUser, game)
-
+      this.bookingMessage = "Game Booked, Please refer to 'My Bookings'"
     }
     
   }

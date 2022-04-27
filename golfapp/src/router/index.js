@@ -6,6 +6,7 @@ import ContactView from '../views/ContactView.vue'
 import ForgotView from '../views/ForgotView.vue'
 import TeeTimes from '../views/TeeTimeView.vue'
 import EnterForgotView from '../views/EnterForgotView.vue'
+import BookingView from '../views/BookingView'
 
 const routes = [
   {
@@ -43,6 +44,12 @@ const routes = [
     name: 'EnterForgot',
     component: EnterForgotView
   },
+  {
+    path: '/bookings',
+    name: 'MyBooking',
+    component: BookingView
+  },
+
 
 ]
 
