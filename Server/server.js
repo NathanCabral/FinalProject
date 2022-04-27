@@ -315,7 +315,7 @@ app.get('/api/game/:gameTitle',(req,res) =>
     {
        for(var i = 0; i < gamesList.length; i++)
        {
-           if(gamesList[i]['gameTitle'] == req.params.gameTitle)
+           if(gamesList[i]['title'] == req.params.gameTitle)
            {
                out = gamesList[i];
            }
