@@ -1,17 +1,45 @@
 <template>
-    <form id ="ForgotPass">
-        <label for="username"> Enter New Password: </label>
+    <form @submit.prevent="forgot" id ="ForgotPass">
+        <label for="password"> Enter New Password: </label>
         <input type="text" v-model="newPass" name="newPass" placeholder="New Password"/>
 
         <label for="password"> Confirm New Password: </label>
-        <input type="password" v-model="newPassCon" name="newPassCon" placeholder="Confirm New Password"/>
-        <button class="btn"> <router-link to="/login"> Save </router-link> </button>
+        <input type="text" v-model="newPassCon" name="newPassCon" placeholder="Confirm New Password"/>
+    
+        <div v-if="errorMessage"> {{errorMessage}} </div>
+
+        <button class="btn"> Save </button>
 
 
     </form>
 </template>
 
 <script>
+    export default {
+        name: "ForgotPassword",
+        data(){
+            return{
+                newPass: "",
+                newPassCon: "",
+                errorMessage: ""
+            }
+        },
+        methods:{
+            forgot(){
+                console.log('Call Forgot()')
+                let p1 = this.newPass;
+                let p2 = this.newPassCon;
+
+                if(p1 != p2){
+                    this.errorMessage = "Passwords Do not Match"
+                }
+                else{
+                    this.$router.replace('/login');
+                }
+            }
+            
+        }
+    }
 </script>
 
 <style scoped>
