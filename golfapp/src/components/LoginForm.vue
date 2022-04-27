@@ -7,6 +7,7 @@
         <input type="password" v-model="password" name="password" placeholder="Password"/>
         <div v-if="errorMessage"> {{errorMessage}} </div>
         <button class="btn"> Login </button>
+        <button class="forgot"> <router-link to="/forgot">Forgot My Password</router-link> </button>
 
     </form>
 </template>
@@ -39,36 +40,27 @@
                 })
             }
         }
-        //     login(){
-        //         console.log('Call login()');
-        //         getPlayer(this.username).then(response => {
-        //             console.log(response)
-        //             let user = response
-        //             let password = user.password;
-        //             if(user == 0){
-        //                 console.log('Login failed');
-        //                 this.errorMessage = "Login Failed. Account does not exist, Please Register to Log in"
-        //                 setToken(false)
-        //             }
-        //             else if(password == this.password){
-        //                 console.log('Login success');
-        //                 this.$router.replace('/');
-        //                 setToken(true)    
-        //             }
-        //             else{
-        //                 console.log('Login failed');
-        //                 this.errorMessage = "Login Failed, Username/Password combination not found"
-        //                 setToken(false)
-        //             }
-        //         })
-        //         var x = getToken();
-        //         console.log(x)
-        //     }
-        // }
     }
 </script>
 
 <style scoped>
+    .forgot a{
+        color: black;
+        text-decoration: none;
+    }
+    .forgot{
+        font-weight: bold;
+        background-color: #c7d9be;
+        color:  black;
+        padding: 14px 20px;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        border: none;
+        cursor: pointer;
+        display: block;
+        width: 30%;
+    }
     #login{
         margin-top: 50px;
     }
@@ -95,7 +87,7 @@
         box-sizing: border-box;
     }
 
-    button {
+    .btn {
         font-weight: bold;
         background-color: #c7d9be;
         color:  black;
@@ -108,4 +100,5 @@
         display: block;
         width: 30%;
     }
+
 </style>
