@@ -56,6 +56,13 @@ export async function getChosenGames(username)
     const response = await axios.get(url);
     return response.data;
 }
+
+export async function addChosen(data)
+{
+    const response = await axios.post('/api/add/choseGames',{choseGames: data});
+    return response.data;
+}
+
 export async function getGames()
 {
     const response = await axios.get('api/games');
