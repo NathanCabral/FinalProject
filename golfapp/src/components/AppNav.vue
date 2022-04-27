@@ -2,7 +2,7 @@
     <nav id="vue">
         <div class="nav-button"><router-link to="/">Home</router-link></div>
         <div class="nav-button" v-if="isLoggedIn"><router-link to="/teetime">Book Tee Times</router-link></div>
-        <div class="nav-button" v-if="isLoggedIn"><router-link to="/">My Bookings</router-link></div>
+        <div class="nav-button" v-if="isLoggedIn"><router-link to="/bookings">My Bookings</router-link></div>
         <div class="nav-button" v-if="!isLoggedIn"><router-link to="/register">Register</router-link></div>
         <div class="nav-button" v-if="!isLoggedIn"><router-link  to="/login">Login</router-link></div>
         <div class="nav-button"><router-link to="/contactus">Contact Us</router-link></div>
