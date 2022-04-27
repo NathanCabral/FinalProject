@@ -7,6 +7,13 @@ export async function welcomeUser(username,password)
     return response.data;
 }
 
+export async function updatePassword(data)
+{
+    var url = '/api/updatePassword/' + data['username'] +'/' + data['password'];
+    const response = await axios.post(url,{player: data});
+    return response.data;
+}
+
 export async function resetPassword(username,password)
 {
     var url = 'api/mail/reset/' + username +'/' + password;

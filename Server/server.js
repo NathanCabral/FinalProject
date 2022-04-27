@@ -23,6 +23,15 @@ const pusher = new Pusher({
     useTLS: true
 });
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept'
+    );
+    next();
+  });
+
 app.post('/api/schedule', (req,res) => 
 {
     const {body} = req;
@@ -33,7 +42,6 @@ app.post('/api/schedule', (req,res) =>
 
     pusher.trigger('schedule', 'new-event', data);
     res.json(data);
-
 });
 
 app.get('/api/mail/welcome/:username/:password',(req,res) =>
@@ -114,6 +122,14 @@ app.get('/api/mail/reset/:username/:password',(req,res) =>
     })  
 });
 
+app.post('/api/updatePassword/:username/:password',(req,res)=>
+{
+    const doc = model.Players.findOne({username: req.params.username, password:req.params.password});
+    const update = {password: req.body.newPassword};
+    const value = doc.updateOne(update);
+
+    res.json(value);
+})
 
 app.post('/api/addPlayer',(req,res) =>
 {
