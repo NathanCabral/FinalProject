@@ -134,9 +134,9 @@ app.post('/api/addGame',(req,res) =>
 {
     let gameData = 
     {
-        gameID: req.body.game.gameID,
-        gameDate: req.body.game.gameDate,
-        gameTime: req.body.game.gameTime,
+        gameTitle: req.body.game.gameTitle,
+        gameStart: req.body.game.gameStart,
+        gameEnd: req.body.game.gameEnd,
         courseID: req.body.game.courseID,
     };
 
@@ -277,14 +277,14 @@ app.get('/api/score/:username',(req,res) =>
     });
 });
 
-app.get('/api/game/:gameID',(req,res) =>
+app.get('/api/game/:gameTitle',(req,res) =>
 {
     var out = 0;
     model.Games.find().then(function(gamesList)
     {
        for(var i = 0; i < gamesList.length; i++)
        {
-           if(gamesList[i]['gameID'] == req.params.gameID)
+           if(gamesList[i]['gameTitle'] == req.params.gameTitle)
            {
                out = gamesList[i];
            }

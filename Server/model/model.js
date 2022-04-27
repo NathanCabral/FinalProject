@@ -16,7 +16,6 @@ mongoose.connect('mongodb://localhost:27017/Golf',
     }
 );
 
-
 let playerSchema = new schema({
     firstName: String,
     lastName: String,
@@ -35,13 +34,13 @@ let playerSchema = new schema({
 });
 
 let gameSchema = new schema({
-    gameID:{
+    gameTitle:{
         type: String,
         unique: true,
         index: true
     },
-    gameDate: Date,
-    gameTime: String,
+    gameStart: Date,
+    gameEnd: Date,
     courseID: String,
     player1: String,
     player2: String,
