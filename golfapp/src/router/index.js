@@ -36,7 +36,7 @@ const routes = [
     path: '/teetime',
     name: 'bookteetime',
     component: TeeTimes
-  }
+  },
 
 ]
 

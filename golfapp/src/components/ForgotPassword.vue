@@ -1,15 +1,14 @@
 <template>
     <form @submit.prevent="forgot" id ="ForgotPass">
         <label for="password"> Enter New Password: </label>
-        <input type="text" v-model="newPass" name="newPass" placeholder="New Password"/>
+        <input type="password" v-model="newPass" name="newPass" placeholder="New Password"/>
 
         <label for="password"> Confirm New Password: </label>
-        <input type="text" v-model="newPassCon" name="newPassCon" placeholder="Confirm New Password"/>
+        <input type="password" v-model="newPassCon" name="newPassCon" placeholder="Confirm New Password"/>
     
         <div v-if="errorMessage"> {{errorMessage}} </div>
 
         <button class="btn"> Save </button>
-
 
     </form>
 </template>

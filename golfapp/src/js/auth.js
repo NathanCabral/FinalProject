@@ -6,6 +6,7 @@ export default{
         authRequest(username, password, (res) => {
             if (res.auth){
                 localStorage.token = res.token;
+        
                 callback({
                     auth: true,
                     token: res.token
@@ -28,7 +29,6 @@ export default{
         });
         this.onLoginStatus(false)
     },
-    //To check if I am logged in?
     isLoggedIn(){ return !!localStorage.token},
 
     onLoginStatus(status){
