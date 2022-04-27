@@ -60,10 +60,11 @@
                             this.errorMessage = "Error Registering User, please try again"
                         }
                     })
+                    var output = welcomeUser(this.username,this.password)
+                    console.log(output);
+                    this.$router.replace('/login');
                 }
-                var output = welcomeUser(this.username,this.password)
-                console.log(output);
-                this.$router.replace('/login');
+                
             }
         }
     }
