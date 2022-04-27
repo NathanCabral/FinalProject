@@ -1,5 +1,19 @@
 const axios = require('axios');
 
+export async function welcomeUser(username,password)
+{
+    var url = 'api/mail/welcome/' + username +'/' + password;
+    const response = await axios.get(url);
+    return response.data;
+}
+
+export async function resetPassword(username,password)
+{
+    var url = 'api/mail/reset/' + username +'/' + password;
+    const response = await axios.get(url);
+    return response.data;
+}
+
 export async function addPlayer(data)
 {
     const response = await axios.post(`/api/addPlayer`,{player: data});

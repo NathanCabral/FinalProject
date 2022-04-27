@@ -14,24 +14,24 @@ app.use(express.urlencoded({extended:false}));
 
 mail.setApiKey('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')
 
-app.get('/api/mail/reset/:username/:password',(req,res) =>
+app.get('/api/mail/welcome/:username/:password',(req,res) =>
 {
-    model.Players.find().then(function(resetUser)
+    model.Players.find().then(function(welcomeUser)
     {
-        for(var i = 0; i < resetUser.length; i++)
+        for(var i = 0; i < welcomeUser.length; i++)
        {
-           if(resetUser[i]['username'] == req.params.username && resetUser[i]['password'] == req.params.password)
+           if(welcomeUser[i]['username'] == req.params.username && welcomeUser[i]['password'] == req.params.password)
            {
                const msg = 
                {
                    from: "Nathan.Cabral@ontariotechu.net",
                    template_id: "d-b27346e5c5a94cf392f3600d3465b9ea",
                    personalizations: [{
-                    to: {email: "Nathan.Cabral@ontariotechu.net"},
+                    to: {email: welcomeUser[i]['email']},
                     dynamic_template_data: {
                         subject: "Resgistering with Oshawa Links!",
-                        first_name: resetUser[i]['firstName'], 
-                        last_name: resetUser[i]['lastName'],
+                        first_name: welcomeUser[i]['firstName'], 
+                        last_name: welcomeUser[i]['lastName'],
                     },
                 }],
                };
@@ -53,6 +53,44 @@ app.get('/api/mail/reset/:username/:password',(req,res) =>
     })  
 });
 
+app.get('/api/mail/reset/:username/:password',(req,res) =>
+{
+    model.Players.find().then(function(resetPassword)
+    {
+        for(var i = 0; i < resetPassword.length; i++)
+       {
+           if(resetPassword[i]['username'] == req.params.username && resetPassword[i]['password'] == req.params.password)
+           {
+               const msg = 
+               {
+                   from: "Nathan.Cabral@ontariotechu.net",
+                   template_id: "d-2494445a32c448b1a3f503e6f2bfa420",
+                   personalizations: [{
+                    to: {email: resetPassword[i]['email']},
+                    dynamic_template_data: {
+                        subject: "Password Reset Request!",
+                        first_name: resetPassword[i]['firstName'], 
+                        last_name: resetPassword[i]['lastName'],
+                    },
+                }],
+               };
+
+               mail
+                .send(msg)
+                .then(() => 
+                    {
+                        console.log('Email sent')
+                        reload(res,"Email Has Been Sent!")
+                    })
+                .catch((error) => 
+                {
+                    console.error(error)
+                    reload(res,error)
+                })
+           }
+       }
+    })  
+});
 
 
 app.post('/api/addPlayer',(req,res) =>
