@@ -164,8 +164,9 @@ app.get('/api/chosenGames/:username',(req,res) =>
     });
 })
 
-app.get('/api/add/choseGames', (req, res) =>
+app.post('/api/add/choseGames', (req, res) =>
 {
+    console.log("choseGames called")
     let chosenGames = 
     {
         gameID: req.body.choseGames.gameID,
