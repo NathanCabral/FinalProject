@@ -168,13 +168,13 @@ app.post('/api/add/chosenGames', (req, res) =>
 {
     let chosenGames = 
     {
-        gameID: req.body.choseGames.gameID,
-        username: req.body.choseGames.username
+        gameID: req.body.chosenGames.gameID,
+        username: req.body.chosenGames.username
     }
 
-    let newChoseGames = new model.Chosengames(chosenGames);
+    let newChosenGames = new model.Chosengames(chosenGames);
 
-    newChoseGames.save(function(error)
+    newChosenGames.save(function(error)
     {
         if(error)
         {
