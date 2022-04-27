@@ -134,9 +134,9 @@ app.post('/api/addGame',(req,res) =>
 {
     let gameData = 
     {
-        gameTitle: req.body.game.gameTitle,
-        gameStart: req.body.game.gameStart,
-        gameEnd: req.body.game.gameEnd,
+        gameTitle: req.body.game.title,
+        gameStart: req.body.game.start,
+        gameEnd: req.body.game.end,
         courseID: req.body.game.courseID,
     };
 

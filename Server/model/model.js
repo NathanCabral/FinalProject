@@ -34,13 +34,13 @@ let playerSchema = new schema({
 });
 
 let gameSchema = new schema({
-    gameTitle:{
+    title:{
         type: String,
         unique: true,
         index: true
     },
-    gameStart: Date,
-    gameEnd: Date,
+    start: Date,
+    end: Date,
     courseID: String,
     player1: String,
     player2: String,
