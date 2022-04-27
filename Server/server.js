@@ -156,13 +156,36 @@ app.post('/api/addGame',(req,res) =>
 
 });
 
-app.get('/api/chosenGames',(req,res) =>
+app.get('/api/chosenGames/:username',(req,res) =>
 {
-    model.Chosengames.find().then(function(games)
+    model.Chosengames.find({username: req.params.username}).then(function(games)
     {
        res.json(games);
     });
 })
+
+app.get('/api/add/choseGames')
+{
+    let chosenGames = 
+    {
+        gameID: req.body.choseGames.gameID,
+        username: req.body.choseGames.username
+    }
+
+    let newChoseGames = new model.Chosengames(chosenGames);
+
+    newChoseGames.save(function(error)
+    {
+        if(error)
+        {
+            console.error('Unable to add Game: ', error);
+        }
+        else
+        {
+            console.log('Game has been added successfully!');
+        }
+    });
+}
 
 app.post('/api/addScore',(req,res) =>
 {

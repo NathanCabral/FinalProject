@@ -50,9 +50,10 @@ export async function getPlayers()
     const response = await axios.get('api/players');
     return response.data;
 }
-export async function getChosenGames()
+export async function getChosenGames(username)
 {
-    const response = await axios.get('api/chosenGames')
+    var url = 'api/chosenGames' + '/' + username;
+    const response = await axios.get(url);
     return response.data;
 }
 export async function getGames()
