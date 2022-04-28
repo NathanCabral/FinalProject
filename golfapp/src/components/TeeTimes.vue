@@ -1,5 +1,4 @@
 <script>
-import '@fullcalendar/core/vdom' // solves problem with Vite
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
@@ -7,7 +6,6 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from "@fullcalendar/list"
 import auth from '../js/auth'
 import { addChosen } from '../services/services'
-
 !function(d,s,id){
   var js,fjs=d.getElementsByTagName(s)[0];
   if(!d.getElementById(id)){
@@ -59,10 +57,10 @@ export default {
 </script>
 <template>
   <div id ="container"> 
-    <div class="column left">
+    <div class="col left">
       <FullCalendar :options="calendarOptions" id = "calendar"/>
     </div>
-    <div class="column right">
+    <div class="col right">
       <form @submit.prevent="event" id ="event">
       <label for="title"> Event Name: </label>
       <input type="text" v-model="title" name="title" placeholder="Event Name"/>
@@ -77,14 +75,13 @@ export default {
   </div>
 </template>
 <style scoped>
-  .column {
+  .col {
     float: left;
     padding: 10px;
   }
   .left {
     width: 80%;
   }
-
   .right {
     width: 20%;
   }
@@ -129,7 +126,6 @@ export default {
     margin-left: auto;
     margin-right: auto;
   } 
-
   .weatherwidget-io{
     margin-top: 50px;
     margin-left: auto;
@@ -137,8 +133,3 @@ export default {
     width: 306px;
   }
 </style>
-
-
-<script>
-
-</script>

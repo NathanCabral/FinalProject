@@ -47,7 +47,6 @@ nav .nav-button {
   display: flex;
   transition: 0.2s;
 }
-
 nav .nav-button:hover {
   background-color: #c7d9be;
   border-bottom-color: black;
