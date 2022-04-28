@@ -1,6 +1,6 @@
 <template>
     <div>
-      <div v-if="isLoggedIn" id = "info">
+      <div id = "info">
         <!-- <div class = "column"> -->
         <h2> Welcome to Oshawa Links! </h2>
         <p>
@@ -14,7 +14,7 @@
          <img src="../assets/GImage4.jpg" class="d-block w-100" alt="...">
       </div>
 
-      <div v-if="isLoggedIn" id = "services">
+      <div id = "services">
         <!-- <div class = "column"> -->
         <h4>
           Online Services:
@@ -25,27 +25,6 @@
         </p>
         <!-- </div> -->
       </div>
-      <div class = "footer">
-        <div class="row">
-        <div class="column">
-          <h5>Contact</h5>
-            <br><a href="mailto: support@OshawaLinks.com">support@OshawaLinks.com</a><br><br>
-            <p> 905-123-4567</p>
-        </div>
-        <div class="column"></div>
-          <h5>Address</h5>
-            <p> Oshawa Airport Golf Club </p><br>
-            <p> 1145 Thornton Rd N </p><br>
-            <p> Oshawa, ON</p><br>
-            <p> L1H 7K4 </p>
-        <div class="column"></div>
-          <h5> Our Team</h5>
-            <p> Nathan Cabral: Club Director </p>
-            <p> Alexander Giannoulis: Event Director </p>
-            <p> Sejal Shingal: F&B Manager </p>
-        </div>
-      </div>
-
     </div>
   </template>
 
@@ -68,7 +47,7 @@
     }
 </script>
 
-<style scoped>
+<style>
   #info{
     width: 100%;
     border: 5px solid #c28530;
@@ -84,7 +63,6 @@
                     linear-gradient(175deg, rgba(0,0,0,0) 80%, #c7d9be 80%),
                     linear-gradient( 85deg, rgba(0,0,0,0) 86%, #c7d9be 86%),
                     linear-gradient(175deg, rgba(0,0,0,0) 75%, #c7d9be 75%);
-
 }
   
   #services{
@@ -92,7 +70,6 @@
     border: 5px solid #c28530;
     padding: 40px;
     margin: auto;
-
     background-color: #E4E4D9;
       background-image: linear-gradient(175deg, rgba(0,0,0,0) 95%, #c7d9be 95%),
                     linear-gradient( 85deg, rgba(0,0,0,0) 95%, #c7d9be 95%),
@@ -108,7 +85,6 @@
                     linear-gradient( 85deg, rgba(0,0,0,0) 80%, #c7d9be 80%);
     
   }
-
   .footer {
     position: absolute;
     padding: 10px 10px 0px 10px;
@@ -122,7 +98,6 @@
   .picture1{
     border-left: 5px solid #c28530;
     border-right: 5px solid #c28530;
-
   }
 	.column {
     flex: 33.33%;
@@ -132,10 +107,5 @@
     background-color: #cccccc;
     text-align: center;
 	}
-  img{
-  height: 1008px;
-}
-
-
   
 </style>
