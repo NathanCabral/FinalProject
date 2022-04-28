@@ -6,10 +6,16 @@
         </div>
         <div class="columns">
             <h3> Contact Us </h3>
-                <h5> Oshawa Links Golf Course </h5> 
-                <p> 2400 Ritson Road North <br>
-                    Oshawa, Ontario L1H 8L7 <br>
-                    Phone: (905) xxx-xxxx</p>
+            <h5> Oshawa Links Golf Course </h5> 
+            <p> 2400 Ritson Road North <br>
+            Oshawa, Ontario L1H 8L7 <br>
+            Phone: (905) xxx-xxxx</p>
+            
+            <p> Customer Support: <a href="mailto:support@oshawalinks.com">support@oshawalinks.com</a> </p>
+            <h3> Hours of Operation </h3>
+            <p> <strong> Monday to Friday:</strong> 9:00am to 8:00pm<br>
+            <strong> Saturday and Sunday:</strong> 11:00am to 11:00pm<br>
+            </p>
         </div>
     </div>
   </template>
@@ -33,10 +39,10 @@
     h3{
         padding-left: 2%;
         padding-top: 5%;
-        text-align: left;
+        text-align: center;
     }
-    iframe{
+    p,h5{
+        text-align: center;
         padding-left: 2%;
-        float: left;
     }
 </style>
