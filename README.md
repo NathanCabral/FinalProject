@@ -43,3 +43,7 @@ Login Information for already created account:
 
 Username: Ncabral
 Password: 123456789
+
+
+Sources:
+The code for the weather widget is taken from an open source tool, which can be found here: https://weatherwidget.io/
