@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id = "forgot">
         <h5> Please enter your username below, if there is a corresponding username on record, you will recieve an email with a link to reset your password.</h5>
 
     <form @submit.prevent="input" id ="ForgotPass">
@@ -71,25 +71,11 @@
 </script>
 
 <style scoped>
-    .forgot a{
-        color: black;
-        text-decoration: none;
+    #forgot{
+        margin-top: 30px;
     }
-    .forgot{
-        font-weight: bold;
-        background-color: #c7d9be;
-        color:  black;
-        padding: 14px 20px;
-        margin-top: 20px;
-        margin-left: auto;
-        margin-right: auto;
-        border: none;
-        cursor: pointer;
-        display: block;
-        width: 30%;
-    }
-    #login{
-        margin-top: 50px;
+    #ForgotPass{
+        margin-top: 30px;
     }
     label{
         width: 30%;
