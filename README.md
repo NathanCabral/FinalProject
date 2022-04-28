@@ -6,6 +6,9 @@
 | Alexander Giannoulis | [Alex-Giannoulis](https://github.com/Alex-Giannoulis) |
 | Sejal Shingal | [Sejal1109](https://github.com/Sejal1109) |
 
+Google Drive with Independent Study and Website Demo: https://drive.google.com/drive/folders/1IFJLjy9SuhU69fu3KQHveB8a43YJYPjF?usp=sharing
+
+
 To import database:
 
 1. Go to MongoDBCompass
